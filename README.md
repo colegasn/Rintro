@@ -24,7 +24,7 @@ It is assumed the user has no prior experience with other programming languages.
 
 ## Getting Started
 
-Click [here](https://colegasn.github.io/Rintro/)) to access the vignette, or click the URL link under the **About** section on the GitHub page. This should open an HTML document of the vignette.
+Click [here](https://colegasn.github.io/Rintro/) to access the vignette, or click the URL link under the **About** section on the GitHub page. This should open an HTML document of the vignette.
 
 It is highly recommended that you follow along with the HTML vignette by setting up and running the R code provided on your computer to get the most out of this tutorial. For your convenience, we have taken the R code listed in the HTML document and saved it in an R script `purpleair.R`. You can file this file listed at the top of the GitHub page.
 
