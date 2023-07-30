@@ -2,7 +2,7 @@
 title: "Introduction to R and R Studio"
 subtitle: "Using the R Programming Language for Beginners"
 author: "Stephen Colegate"
-date: "July 24, 2023"
+date: "July 30, 2023"
 format:
   html:
     output-file: "index.html"
@@ -16,59 +16,61 @@ number-sections: true
 number-depth: 3
 ---
 
-::: {.callout-note title="Before You Begin"}
-Download the following files from our [GitHub page](https://github.com/geomarker-io/purple_air_data_in_R). To download these files, click on the file name at the top of the page and then click **Download raw file**.
-
--   `new_pas.R`
-
--   `new_pat.R`
-
-![Click on **Download raw file** for each file posted on our GitHub page.](github_download.png){width="650"}
-
-Once the files have been downloaded onto your computer, save all these files in one new folder. Make a mental note of the location of this folder, since you will need to reference its file path later in this tutorial. After you install both R and RStudio, clicking on any of these `.R` files should open RStudio and set your current working directory to the folder these files are located. For more information about working directories, see @sec-saveload.
-:::
-
 # Introduction {#sec-intro}
 
-R is a free, open-source software program that is available for Windows, Macs and Linux operating systems [@rcoreteam2013]. Because of this, many statisticians, biostatisticans, and data scientists have been using R to meet their data processing needs. In this tutorial, we will introduce how to install R and RStudio on your computer, try out basic R function commands, and learn how to install and load R packages.
+R is a free, open-source software program that is available for Windows, Macs and Linux operating systems [@rcoreteam2013]. Because of this, many statisticians, biostatisticans, and data scientists have been using R to meet their data processing needs. The RStudio Desktop software operates the R programming language in a user-friendly environment.
+
+In this tutorial, we will introduce how to install R and RStudio on your computer, try out basic R function commands, sourcing in files, saving and loading data, creating an R project, and learn how to install and load R packages.
 
 # Installing R and RStudio {#sec-installR}
 
-The latest version of R available as of the time of this writing is R-4.3.1. You can install R on your computer by going to <https://cran.r-project.org/> and selecting the R version that is appropriate for your operating system. Download the `base` distribution of R from the website and follow the prompts to install R on your computer.
+The latest version of R available as of the time of this writing is R-4.3.1. You can install R on your computer by going to <https://cran.r-project.org/> and selecting the R version that is appropriate for your operating system.
 
-![The Comprehensive R Archive Network (CRAN) website for downloading R.](r_site.png)
+![The Comprehensive R Archive Network (CRAN) website for downloading R.](r_site.png){fig-align="center"}
 
-After installing R on your computer, you will also need to install [RStudio Desktop](https://posit.co/download/rstudio-desktop/) - an integrated development environment (IDE) to help data scientists be more productive with R [@rstudioteam2020a]. RStudio is a dashboard hosted by [posit](https://posit.co/) that allows ease of access to using R, especially if you are using R for the first time. The [posit website link](https://posit.co/) should automatically direct you to the appropriate version of RStudio you will need to download and install on your computer. Once you have both R and RStudio installed, open up the RStudio software.
+Download the `base` distribution of R from the website and follow the prompts to install R on your computer. This is what you want to click on if you are installing R for the very first time.
 
-![The posit site for downloading RStudio.](rstudio_site.png)
+![Click **base** to install R for the first time.](r_site2.png){fig-align="center"}
+
+This should then take you to a splash page where you can install the version of R specific to your operating system. Click **Download R-4.3.1** to download the executable file.
+
+![The Download R page for the Windows operating system.](r_site3.png){fig-align="center"}
+
+Go to your downloads folder or wherever you view files where you download from the internet and look for the `R-4.31.exe` file tailored for your operating system. Open the executable file to begin the installation process. Follow the on-screen prompts to install R on your computer.
+
+::: callout-note
+Older versions of R support 32-bit (denoted i386) and 64-bit (denoted x64) operating systems. This is because computers that are 32-bit can only run 32-bit software while 64-bit computers can run both 32-bit and 64-bit software. Since most computers today support 64-bit software, it is highly recommended the 64-bit version of R is used. Therefore as of R version 4.4.0, only the 64-bit version is supported.
+:::
+
+After installing R on your computer, you will also need to install [RStudio Desktop](https://posit.co/download/rstudio-desktop/) - an integrated development environment (IDE) to help data scientists be more productive with R [@rstudioteam2020a]. RStudio is a dashboard hosted by [posit](https://posit.co/) that allows ease of access to using R, especially if you are using R for the first time. When you open RStudio, you are also opening the R programming console within.
+
+Go to the [RStudio Desktop webpage](https://posit.co/download/rstudio-desktop/). If you have not installed R yet, you can click **Download and Install R** on the webpage to begin the installation process. Click Download RStudio Desktop appropriate for your operating system. The posit website link should automatically direct you to the appropriate version of RStudio you will need to download and install on your computer. After clicking the download link, the executable file for RStudio will begin to download. After downloading, run the executable file and begin the installation process.
+
+![The posit site for downloading RStudio.](rstudio_site.png){fig-align="center"}
+
+Once you have both R and RStudio installed, open up the RStudio software. Look for the RStudio icon in your list of programs and click the icon to open it.
 
 # Opening and Using R {#sec-openR}
 
-Download the `purpleair.R` file from our [GitHub page](https://github.com/geomarker-io/purple_air_data_in_R). Make note of the file location on your computer where you save the file. It is recommended that you save the R file in a different location than your **Downloads** folder.
-
-![Our GitHub website where all files in the document are located.](github.png)
-
-This kind of file is called an R script. You can identify R files with the file extension name `.R`. By default, RStudio should open a `.R` file if you click on it. If your computer does not recognize the `.R` file extension, you must tell your computer to open the file using RStudio. Optionally, you can also open an `.R` file within RStudio by following these steps:
-
-1.  Open RStudio.
-2.  Click on **File** \> **Open File**. A navigation window should appear.
-3.  Navigate to the file location where you saved the `purpleair.R` file.
-4.  Click **Open**.
-
-## RStudio Environment
-
 A typical layout within RStudio has four different quadrants. Starting from the top-left clockwise:
 
-![The default RStudio layout for a typical R session.](rstudio_layout.png)
+![The default RStudio layout for a typical R session.](rstudio_layout.png){fig-align="center" width="1200"}
 
-1.  **Source Pane:** This panel displays all the R scripts you have opened. Code should be written in this panel. You can save R code within the panel to work on later. Any `.R` files you open with RStudio will be displayed in this panel.
-2.  **Console Pane:** This panel displays the actual R console, including all the code and output that has been conducted so far.
+1.  **Source Pane:** This panel displays all the R scripts you have opened. Code should be written in this panel. You can save R code within the panel to work on later. Any `.R` files you open with RStudio will be displayed in this panel. You can have multiple R scripts open at a time. R scripts that have changes that have not been saved will be written in red text. R scripts that have been saved will have their titles written in black text. You can change the name of the R script by right-clicking the R script tab name.
+
+    ::: callout-caution
+    If you have opened RStudio for the very first time, no R scripts will be open. Therefore, the Source Pane (1) will not appear in the R environment. When you open an R script, the Source Pane will appear.
+    :::
+
+2.  **Console Pane:** This panel displays the actual R console, including all the code and output that has been conducted so far. The command prompt is designated by the `>` symbol. You can type in code here at the command prompt and then click **Enter** to execute what you type. Try this out by typing `2 + 2` at the command prompt and press **Enter**. When you click **Run** in the Source Pane, the line of code from the R script is pasted into the command prompt and is automatically executed for you.
+
 3.  **Environment Pane:** This panel houses several tabs. The **Environment** tab lists all the R objects and variables available during the R session. The **History** tab keeps track of all code that has been executed in the Console. More tabs may be displayed depending on the type of project you may be working on.
+
 4.  **Output Pane:** This panel includes a file viewer, plots that have been made, list of packages available and currently loaded, help documentation, a viewer, and a presentation tab.
 
-This rendered HTML of all the code and relevant output is hosted online on our GitHub page, which you can access by clicking [here](https://geomarker.io/purple_air_data_in_R/). All the R code that is available on this webpage can be copied and pasted into your R session. For each R code block, hover your mouse over the top-right corner and click **Copy to Clipboard** and then paste all the code from the code block into your R script. Try running all the available R code in this file to become familiar with the R programming language.
+## R Scripts {#sec-rscripts}
 
-## R Scripts
+You can save code commands by typing code into a `.R` file. This kind of file is called an R script. Putting code in R scripts allows one to save code commands. The major advantage of using the R programming language is its reproducibility - the user can write code to an R script, execute the code into the console to achieve output, save the R script, and return later to re-run the R code in the script to achieve the same results as before. This makes it easy for someone else to take code, run it, and obtain the same results on their computer. You can identify R files with the file extension name `.R`. Common file names R and RStudio use to save R commands include R scripts (`.R`), R Markdown documents (`.RMD`) and Quarto Documents (`.QMD`). This vignette, for example, was compiled from a `.QMD` file within RStudio.
 
 To open a new R script in RStudio, click on **File** \> **New File** \> **R Script**. A new R script opens in the Source Pane. You can then write code into the R script and save it for later. To save your R script for the first time, click on the disk icon to bring up the navigation window. Type in a name of the file with the `.R` or `.r` suffix at the end of the name and click **Save**.
 
@@ -86,7 +88,33 @@ If you close RStudio without saving, you will be asked if you'd like to save you
 For most purposes in R, it is not necessary to save your Workspace Image since all code can easily be reproduced in a new R session so click **No** when prompted.
 :::
 
-R code is executed one line at a time. To run a line, place your cursor on the line you wish to run in the Source Pane and click on **Run**. The line of code is then sent to the Console Pane and is executed. You can highlight multiple lines of code and run them all at once as well. Optionally, you can run lines of code by using the shortcut **CTRL + ENTER**. To get started, here is some simple lines of code:
+By default, RStudio should open a `.R` file if you click on it. If your computer does not recognize the `.R` file extension, you must tell your computer to open the file using RStudio. You can open an `.R` file within RStudio by following these steps:
+
+1.  Open RStudio.
+2.  Click on **File** \> **Open File**. A navigation window should appear.
+3.  Navigate to the file location where you want to open the `.R` file.
+4.  Click **Open**.
+
+R code is executed one line at a time. To run a line, place your cursor on the line you wish to run in the Source Pane and click on **Run**. The line of code is then sent to the Console Pane and is executed. [This rendered HTML page](https://colegasn.github.io/Rintro/) of all the code and relevant output is hosted online on our [GitHub page](https://github.com/colegasn/Rintro). All the R code that is available on this webpage can be copied and pasted into your R session. For each R code block, hover your mouse over the top-right corner and click **Copy to Clipboard** and then paste all the code from the code block into your R script. For example, try running the following code block below:
+
+```{r download}
+download.file("https://raw.githubusercontent.com/geomarker-io/purple_air_data_in_R/main/purpleair.R",
+              destfile = "purpleair.R")
+```
+
+After copying and pasting this R code into the R script, run the entire line of code by putting your cursor at the beginning of the line and click **Run** at the top of the Source Pane.
+
+::: callout-tip
+The above R command is just one line of code, even though it appears to be two lines of code. R code that becomes too long to fit on one line may move down to the next line and so on. When the command is executed in the console, R understands that the comma does not end the line of code (the `)` symbol does) and continues reading subsequent lines until it reaches a natural end.
+:::
+
+The line of code is then immediately placed into the R console in the Console Pane and is executed. When you run this R command, R goes to [this GitHub page](https://github.com/geomarker-io/purple_air_data_in_R/tree/main), looks for a file on that page called `purpleair.R` and downloads it to your current working directory folder on your computer (see @sec-wd for more details about working directories). You can then navigate to the Output Pane under the **Files** tab and look for the `purpleair.R` file there. Notice this is an R script because of the `.R` file extension! Clicking on this file within RStudio should open the R script in the Source Pane.
+
+::: callout-tip
+Try running all the available R code in this file to become familiar with the R programming language. Copy and paste each R code block within this webpage into an R script, then click **Run** after each command you paste in.
+:::
+
+You can highlight multiple lines of code and run them all at once as well. Optionally, you can run lines of code by using the keyboard shortcut **CTRL + ENTER** (or equivalent). To get started, here is some simple lines of code:
 
 ```{r example1}
 # Assign values
@@ -102,14 +130,14 @@ Highlight the first line of code in the Source Pane `x <- 2`. The special charac
 
 With the variables `x` and `y` now declared, we can then use them to perform some simple operations:
 
-```{r}
+```{r basic_r}
 # Perform simple operations
 x + y     # equivalent to '2' + '9'
 sqrt(y)   # sqrt = square-root
 ```
 
 ::: callout-warning
-R is case sensitive and name sensitive so be very careful with how you name objects, files, options, and data frames within R. For example, even though `PM25`, `pm25`, `pm2.5`, and `PM2.5` all *appear* the same, these are classified as 4 different names. For convenience, we try to stick to lowercase letters when coding in R to avoid these discrepancies.
+R is case sensitive and name sensitive so be very careful with how you name objects, files, options, and data frames within R. For example, even though `PM25`, `pm25`, `pm2.5`, and `PM2.5` all *appear* the same, R classifies these as 4 different names. For convenience, we try to stick to lowercase letters when coding in R to avoid these discrepancies.
 :::
 
 Since `x` and `y` have been declared, R then calculates `x + y` and `sqrt(y)`. These results change depending on what the values of `x` and `y` are. As an exercise, change the values of `x` and `y` and rerun these lines again. The `sqrt()` line is a **function** - functions perform more complicated tasks within R.
@@ -118,7 +146,7 @@ Since `x` and `y` have been declared, R then calculates `x + y` and `sqrt(y)`. T
 Make sure you declare both `x` and `y` variables first before running `x + y` and `sqrt(y)` or else R will report an **ERROR** message.
 :::
 
-R can work with data set objects, called data frames. R has a built-in data frame called `mtcars`. You can learn more information about any function or built-in data set by opening the help window using the `help()` function:
+R can work with data set objects, called **data frames**. R has a built-in data frame called `mtcars`. You can learn more information about any function or built-in data set by opening the help window using the `help()` function:
 
 ```{r help}
 #| eval: false
@@ -160,26 +188,22 @@ You can use the function `getwd()` to obtain the current working directory:
 getwd()
 ```
 
-This should return a file path that should point to the root folder - the folder that contains the files `purpleair.R`, `new_pas.R`, and `new_pat.R`.
+This should return a file path that should point to a root folder on your computer. All files created within the current R session will be saved to this file location. By default, R searches this directory whenever it is asked to read in contents from a file.
 
-::: callout-tip
-If you opened either the `purpleair.R`, `new_pas.R` or `new_pat.R` files that should be saved in the same folder location, the working directory should already be correctly set. Nevertheless, it is always a good idea to check the working directory first to make sure it is correct.
-:::
-
-If the file path displayed by `getwd()` is incorrect, you will need to change the working directory by following these steps:
+If the file path displayed by `getwd()` is incorrect, you can change the working directory by following these steps:
 
 1.  In the RStudio window at the top, click **Session** \> **Set Working Directory** \> **Choose Directory...**. A navigation window should appear, showing you the contents of the root folder of the working directory.
 
-    ![Changing the work directory at the beginning of an R session.](setwd.png){width="450"}
+    ![Changing the work directory at the beginning of an R session.](setwd.png){fig-align="center" width="450"}
 
-2.  Navigate to the root folder where `purpleair.R`, `new_pas.R`, and `new_pat.R` are saved.
+2.  Navigate to the root folder where you would like to set your working directory.
 
 3.  Click **Open**.
 
 4.  R automatically sets the new working directory using the function `setwd()` in the Console Pane.
 
     ::: callout-tip
-    Feel free to copy this line of code from the Console Pane to the `purpleair.R` script. Make sure to remove the `>` symbol (the **command prompt**) at the beginning of the line when doing so. By copying in the `setwd()` statement into the R script, you can then set the working directory by simply running this line of code.
+    Feel free to copy this line of code from the Console Pane to an R script. Make sure to remove the `>` symbol (the **command prompt**) at the beginning of the line when doing so. By copying in the `setwd()` statement into the R script, you can then set the working directory by simply running this line of code.
     :::
 
 5.  Verify that you have set your working directory correctly using the `getwd()` function again.
@@ -188,54 +212,24 @@ If the file path displayed by `getwd()` is incorrect, you will need to change th
 Always start a brand new R session before changing the working directory. The working directory should always be set first before performing any tasks. For example, the `here` package (described next) sets the default file path to the current working directory, and only when the package is first loaded. Changing the working directory afterwards will not change the file path.
 :::
 
-The R package `here` can help navigate the locations of folders within a working directory. We will discuss more about R packages in the @sec-packages. First, install the package using the `install.packages()` function with the name of the package `here` in quotes, referred to as a **character string**:
-
-```{r install_here}
-#| eval: false
-# Install the 'here' package - only run this once
-install.packages("here")
-```
-
-Then load the package using the `library()` function:
-
-```{r here}
-#| eval: true
-# Load the 'here' package
-library(here)
-```
-
-Since different operating systems have different conventions for writing out their file paths, the `here()` function makes it easy to reference your current working directory on your computer:
-
-```{r mypath}
-# Save the file path location
-mypath <- here()
-mypath
-```
-
-::: callout-imporant
-This is the reason why it is so crucial to save all the files you download from our GitHub page into a new folder. If the files are spread out across multiple folders, R will not be able to find files or load in functions correctly. Always check the working directory of your R session first before performing any tasks or you may run into problems loading in files or saving files in the wrong location.
-:::
-
-Running this line saves the current working directory as a character string. This is convenient for referencing where the default file path location R checks for reading in files Whenever we save data, we will use the file path `mypath` to ensure the data are saved as files in the correct file location on your computer.
-
 ## Save/Load Data {#sec-saveload-data}
 
-uppose we wish to save `mtcars` in a file named `cardata.rds`. Here, the `.rds` file extension references a [**R**]{.underline} [**D**]{.underline}**ata [S]{.underline}erialization** file - a convenient way to save and read in data frame objects in R.
+Suppose we wish to save `mtcars` in a file named `cardata.rds`. Here, the `.rds` file extension references a [**R**]{.underline} [**D**]{.underline}**ata [S]{.underline}erialization** file - a convenient way to save and read in data frame objects in R.
 
 ```{r save_file}
 # Save data frame as a file
-saveRDS(mtcars, file = here(mypath, "cardata.rds"))
+saveRDS(mtcars, file = "cardata.rds")
 ```
 
 We can then use the same `mypath` to load in the file as well.
 
 ```{r load_file}
 # Load data frame into the R session
-readRDS(file = here(mypath, "cardata.rds"))
+readRDS(file = "cardata.rds")
 ```
 
 ::: callout-important
-The `mypath` references the file path where the `cardata.rds` file is saved on your computer. If you move the `cardata.rds` file to a different location, you should also move its associated files with it too, or else you will have to manually update the file paths of each associated file. To avoid complications with problems like this, it is always a good idea to keep only the `cardata.rds` and its associated files in a folder. Moving the folder with all its contents included makes the project self-contained since the `here` package will automatically update the file paths to the new folder location.
+By default, `cardata.rds` file is saved on your computer in the current working directory (see @sec-wd to learn how to change your working directory to save the file in a different location). If you move the `cardata.rds` file to a different location, you should also move its associated files with it too, or else you will have to change your working directory during the R session - something to avoid doing in practice. To avoid complications with problems like this, it is always a good idea to keep only the `cardata.rds` and its associated files in a folder. Moving the folder with all its contents included makes the project self-contained since the `here` package will automatically update the file paths to the new folder location.
 :::
 
 R can work with a variety of data structures besides the `.rds` format. Common structures include `.csv`, `.txt`, and `.spss`. Excel spreadsheets can also be read in by using the `readxl` package. The easiest way to import a data file for the first time is using the **Important Dataset** feature in the **Environment** Tab in the Environment Pane. All code needed to read in data files for this vignette will be provided but you may have to alter the file path locally for the code to work properly on your computer.
@@ -264,38 +258,78 @@ Here's an example how to source a R script:
     There is an example `API_KEY.R` file on our GitHub page you can also download and save to your working directory. This example file has the same unique API Key as shown here, effectively bypassing this step.
     :::
 
-3.  Save the R script with the file name `API_KEY.R` by clicking on **File** \> **Save As** and typing in the file name `API_KEY.R` in your current working directory (as referenced by `mypath`; see @sec-wd).
+3.  Save the R script with the file name `API_KEY.R` by clicking on **File** \> **Save As** and typing in the file name `API_KEY.R` in your current working directory (as referenced by your current working directory; see @sec-wd).
 
 4.  In the current R script, load in the `API_KEY.R` file using the `source()` function:
 
     ```{r source}
     # Load in the API_KEY.R file containing API Key
-    source(here(mypath, "API_KEY.R"))
+    source("API_KEY.R")
     ```
 
 5.  When this line is run (assuming the working directory is set correctly and the file saved to that location), R should look inside the working directory and look for a file named `API_KEY.R`. When it finds it, R then reads *all* its contents. Examining the Environment Pane shows there is now a new variable `API` which contains the API Key as a character string. Now you can reference the variable API in any functions that require the use of an API Key.
 
 ::: callout-tip
-Another advantage of using the `source()` function to read in API Keys is to avoid having to carefully specify the API Key.
+Another advantage of using the `source()` function to read in API Keys is to avoid having to carefully specify the API Key directly in the R script. You can then share the R script with others without having sensitive information contained within.
 :::
 
 Sourcing R files is also useful to cut down on the length of your R script. For example, two user-created functions `new_pas()` and `new_pat()` were developed to assist the user to read in PurpleAir Synoptic (PAS) data files and PurpleAir Time Series (PAT) data files, respectively. Custom functions can be saved to an R script (in this case, `new_pas.R` and `new_pat.R`, respectively). The user can then read in these custom functions without having to specify the entire function within the R script.
+
+First run these two lines of codes to download the new_pas.R and new_pat.R files:
+
+```{r download2}
+# Download the new_pas.R file from GitHub
+download.file("https://raw.githubusercontent.com/geomarker-io/purple_air_data_in_R/main/new_pas.R", destfile = "new_pas.R")
+
+# Download the new_pat.R file from GitHub
+download.file("https://raw.githubusercontent.com/geomarker-io/purple_air_data_in_R/main/new_pat.R", destfile = "new_pat.R")
+```
 
 To read in the `new_pas()`:
 
 ```{r new_pas}
 # Load the new_pas function
-source(here(mypath, "new_pas.R"))
+source("new_pas.R")
 ```
 
 Likewise, to read in `new_pat()`:
 
 ```{r new_pat}
 # Load the new_pat function
-source(here(mypath, "new_pat.R"))
+source("new_pat.R")
 ```
 
 When these two lines are executed, R looks for the files `new_pas.R` and `new_pat.R` and runs all its contents. These two files contain custom functions to read in PAS and PAT files, respectively. These functions should be present in the Environment Pane. You can now use these functions to accomplish tasks. Click on each function to see exactly what these custom functions accomplish.
+
+# R Projects {#sec-r-projects}
+
+If you are frequently reading in files and saving files to your computer, it is more convenient to create a **R project** to accomplish these tasks. R projects not only allows you to set your working directory every time the R project is opened but it also houses multiple R files, data files, and more all in one place. This is very convenient if you have multiple R scripts or data files you need to open and work with - opening the R project will automatically open up all these files from where you left off. R projects come as files with the file extension `.Rproj`. You can also easily switch back and forth between various R projects within RStudio - handy if you are working on multiple projects at a time.
+
+## New R Project {#sec-new-project}
+
+First open RStudio on your computer. At the top left, click **File** \> **New Project**. A dialogue box should appear like the one shown below:
+
+![Create a new R project within RStudio.](Rproject1.png){alt="Create a new R project within RStudio." fig-align="center" width="400"}
+
+::: callout-tip
+If you already have the folder created where all project files will be kept, you can reference this folder by selecting **Existing Directory**. This loads a navigation box where you can select your folder.
+
+![Select a folder that already exists to house the R project.](Rproject4.png){alt="Select a folder that already exists to house the R project." fig-align="center" width="400"}
+:::
+
+Select New Directory from the message box. This brings up a list of various project types. Select **New Project**.
+
+![Click **New Project** to create a new R project.](Rproject2.png){alt="Click New Project to create a new R project." fig-align="center" width="400"}
+
+On the next screen (shown below), enter in the name of the project (e.g. PurpleAir). Beneath the directory name, browse the location on your computer where to host the R project. This will create a subdirectory folder with the name of the project inside. All files created, saved, and loaded while working in this R project will come from this folder.
+
+![Type in the project name and select where to create the folder for the project.](Rproject3.png){alt="Type in the project name and select where to create the folder for the project." fig-align="center" width="400"}
+
+Leave all the other fields untouched. Click **Create Project** to start the new R project. RStudio then restarts the current R session inside of the project folder.
+
+::: callout-tip
+You can verify the R project you are currently in by looking for the project name in the top-right corner of RStudio. Clicking on this icon brings up a menu to create new R projects, close the existing project, or switch to a new project.
+:::
 
 # Packages {#sec-packages}
 
@@ -309,23 +343,22 @@ Installing packages is easy and usually requires a one-time installation process
 
 -   [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf): a system for creating graphics [@ggplot2].
 
--   [`here`](https://cran.r-project.org/web/packages/here/here.pdf): constructs character strings consisting of file paths to reference files on your computer during an R session [@here].
-
--   [`devtools`](https://www.r-project.org/nosvn/pandoc/devtools.html): a package R users can use to develop their own R packages [@devtools]. This is required to load in the `AirSensor` package from GitHub.
+-   [`devtools`](https://www.r-project.org/nosvn/pandoc/devtools.html): a package that allows experienced R users to create and deploy R packages of their own [@devtools-2].
 
 -   [`MazamaCoreUtils`](https://cran.r-project.org/web/packages/MazamaCoreUtils/MazamaCoreUtils.pdf): a suite of utility functions for working with AirSensor package [@MazamaCoreUtils].
 
--   [`MazamaSpatialUtils`](https://cran.r-project.org/web/packages/MazamaSpatialUtils/MazamaSpatialUtils.pdf): a suite of conversion function to return spatial polygon data [@MazamaSpatialUtils].
+-   [`AirSensor2`](https://github.com/MazamaScience/AirSensor2): package for processing and displaying data from PurpleAir based on the [AirSensor](https://mazamascience.github.io/AirSensor/) package [@AirSensor-2].
 
--   [`AirSensor`](https://github.com/MazamaScience/AirSensor): package for processing and displaying data from PurpleAir [@AirSensor].
+::: callout-caution
+Packages need to only be installed one time. After a package has been installed, there is no reason to install the package again unless there is an updated version for it.
+:::
 
-To install the `dplyr`, `ggplot2`, `here`, `devtools`, `MazamaCoreUtils` and `MazamaSpatialUtils` packages, simply use the `install.packages()` function below.
+To install the `dplyr`, `ggplot2`, `devtools`, and `MazamaCoreUtils` packages, simply use the `install.packages()` function below.
 
 ```{r install_packages}
 #| eval: false
-# Only run once to install (select YES to load binary packages)
-install.packages(c('dplyr', 'ggplot2', 'here', 'devtools',
-                   'MazamaCoreUtils', 'MazamaSpatialUtils'))
+# Install the following packages - only need to run once
+install.packages(c('dplyr', 'ggplot2', 'devtools'))
 ```
 
 ::: callout-caution
@@ -335,34 +368,44 @@ You may need to restart the R session in order for these packages to successfull
 ::: callout-note
 Some packages may need to be loaded from binary sources and compiled before installing. If this happens, a dialogue box will appear, like the one shown below.
 
-![Click **Yes** to install packages that need compiling.](Question.png){width="350"}
+![Click **No** to install packages that need compiling.](Question.png){fig-align="center" width="350"}
 
-Select **Yes** to ensure the packages and their dependencies are downloaded and installed properly.
+Select **No** to ensure the packages downloaded and installed properly.
 :::
 
-Some R package depend on other R packages (called **dependencies**). Packages that depend on other packages will install these extra packages automatically if they are not already installed in the users library. You can view all the R packages installed on your computer by clicking on the **Packages** tab in RStudio on the Output Pane.
+Some R package depend on other R packages (called **dependencies**). Packages that depend on other packages will install these extra packages automatically if they are not already installed in the users library. As an example, the AirSensor2 package requires the `MazamaCoreUtils` package to be already installed:
+
+```{r MazamaCoreUtils}
+#| eval: false
+# Install the 'MazamaCoreUtils' package - only need to run once
+install.packages('MazamaCoreUtils')
+```
+
+::: callout-caution
+Some R packages that depend on other R packages in order to function properly. These extra dependencies are usually installed automatically if they are not present in the users library.
+:::
+
+You can view all the R packages installed on your computer by clicking on the **Packages** tab in RStudio on the Output Pane.
 
 ::: callout-tip
-R already comes with its own packages (e.g., datasets, graphics, etc.). You do not need to install these packages, as they are already preinstalled when R is first installed.
+R already comes with its own packages (e.g., data sets, graphics, etc.). You do not need to install these packages, as they are already pre-installed when R is first installed.
 :::
 
 Periodically, authors of R packages will update their package to fix bugs, add more functions and data sets, and to be better compatible with the latest R software and other packages. You can use the `install.packages()` function to update (actually re-install) the package to the latest version. By default, the latest version of the package available on CRAN will be installed.
 
-Unlike the other R packages above, the `AirSensor` package is not publicly available on CRAN (as of this writing). However, the files needed to install the package can be downloaded from [GitHub](https://github.com/MazamaScience/AirSensor). To do this, we use the `install_github()` function from the devtools package to point to the GitHub page:
+Unlike the other R packages above, the `AirSensor2` package is not publicly available on [CRAN](https://cran.r-project.org/) (as of this writing). However, the files needed to install the package can be downloaded from [GitHub](https://github.com/MazamaScience/AirSensor2). To do this, we use the `install_github()` function from the `devtools` package to point to the GitHub page:
 
-```{r install_AirSensor}
+```{r install_AirSensor2}
 #| eval: false
-# Install the 'AirSensor' package - only need to run once
-devtools::install_github("MazamaScience/AirSensor")
+# Install the 'AirSensor2' package - only need to run once
+devtools::install_github('mazamascience/AirSensor2')
 ```
 
-When the above line is executed, a list of dependencies the `AirSensor` package needs will be listed, and you will be asked to updated some or all of the packages. At the prompt, type `1` and press **ENTER** to update all the dependencies automatically.
+When the above line is executed, a list of dependencies the `AirSensor2` package needs will be listed, and you will be asked to updated some or all of the packages. At the prompt, type `1` and press **ENTER** to update all the dependencies automatically.
 
-![When prompted with a list of packages to update, type `1` and press **ENTER**.](AirSensor.png){width="500"}
+![When prompted with a list of packages to update, type `1` and press **ENTER**.](AirSensor2.png){alt="When prompted with a list of packages to update, type 1 and press ENTER." fig-align="center" width="450"}
 
-All the packages listed in the console will be downloaded and installed. After these packages have been installed, the `AirSensor` package will then be downloaded and installed.
-
-::: callout-note
+::: callout-warning
 It can take several minutes for all the packages to download and install on your computer. Do not run any code or stop the process by clicking on the stop sign icon in the top right of the Console Pane. Doing so can cause problems with the installation.
 :::
 
@@ -376,9 +419,6 @@ Once R packages have been installed, you must then load the R package in the R e
 # Load required R packages
 library(dplyr)
 library(ggplot2)
-library(here)
-library(MazamaCoreUtils)
-library(MazamaSpatialUtils)
 library(AirSensor)
 ```
 
@@ -398,4 +438,10 @@ Sometimes, R will print a warning message if a package that is loaded could conf
 
 ![Function conflicts when loading the `dplyr` package.](conflict.png){width="450"}
 
-To use a masked function from an earlier package, you must either unload the latter package or reference specifically the package. For example, the line `devtools::install_github("MazamaScience/AirSensor")` above runs the `install_github()` function from the `devtools` package without having to load the package (i.e. before the `library(devtools)` line). Indeed, the `::` operator allows you to reference a function from a specific package without having to load that package first. This is handy if you will only use a package just to reference a function or data set sparingly.
+In the above example, the `dplyr` package has functions filter and lag that also appear in the `stats` package (automatically loaded when R opens). When the `dplyr` package is loaded, the `filter` and `lag` functions from the stats package are masked with the same-named functions in the dplyr package.
+
+::: callout-tip
+You can specify precisely which function to use with the `::` operator with the format `package::function`. For example `stats::filter` references the `filter()` function from the `stats` package and `dplyr::filter` references the `filter()` function from the `dplyr` package. Note that the packages do not have to be loaded for this to work.
+:::
+
+To use a masked function from an earlier package, you must either unload the latter package or reference specifically the package. For example, the line `devtools::install_github("MazamaScience/AirSensor2")` above runs the `install_github()` function from the `devtools` package without having to load the package (i.e. before the `library(devtools)` line). Indeed, the `::` operator allows you to reference a function from a specific package without having to load that package first. This is handy if you will only use a package just to reference a function or data set sparingly.
