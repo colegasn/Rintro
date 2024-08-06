@@ -1,8 +1,8 @@
 ---
-title: "Introduction to R and R Studio"
-subtitle: "Using the R Programming Language for Beginners"
+title: "Introduction to R and RStudio"
+subtitle: "A Beginners Guide to Using the R Programming Language"
 author: "Stephen Colegate"
-date: "July 30, 2023"
+date: "August 9, 2024"
 format:
   html:
     output-file: "index.html"
@@ -24,19 +24,27 @@ In this tutorial, we will introduce how to install R and RStudio on your compute
 
 # Installing R and RStudio {#sec-installR}
 
-The latest version of R available as of the time of this writing is R-4.3.1. You can install R on your computer by going to <https://cran.r-project.org/> and selecting the R version that is appropriate for your operating system.
+R is a programming language that primarily functions as a command prompt. R operates by typing in and executing one command at a time. RStudio is an integrated development environment that runs on top of R. It is possible to run R without using RStudio itself, however RStudio comes with so many useful features that having it is almost essential. In this vignette, we will be using R entirely within the RStudio program. When you are using RStudio, you are working with the R programming language, just with the added benefits and quality of life features that you would expect with any computer software.
 
-![The Comprehensive R Archive Network (CRAN) website for downloading R.](r_site.png){fig-align="center"}
+::: callout-warning
+You must install the R programming language first and the RStudio program second. While it is possible to use R without having to install or use RStudio, you must have R installed on your computer before you can install and use RStudio.
+:::
+
+## Installing R
+
+The latest version of R available as of the time of this writing is R-4.4.1. You can install R on your computer by going to <https://cran.r-project.org/> and selecting the R version that is appropriate for your operating system.
+
+![The [Comprehensive R Archive Network (CRAN) website](https://cran.r-project.org/) for downloading R.](r_site.png){fig-align="center"}
 
 Download the `base` distribution of R from the website and follow the prompts to install R on your computer. This is what you want to click on if you are installing R for the very first time.
 
 ![Click **base** to install R for the first time.](r_site2.png){fig-align="center"}
 
-This should then take you to a splash page where you can install the version of R specific to your operating system. Click **Download R-4.3.1** to download the executable file.
+This should then take you to a splash page where you can install the version of R specific to your operating system. Click **Download R-4.4.1** to download the executable file.
 
 ![The Download R page for the Windows operating system.](r_site3.png){fig-align="center"}
 
-Go to your downloads folder or wherever you view files where you download from the internet and look for the `R-4.31.exe` file tailored for your operating system. Open the executable file to begin the installation process. Follow the on-screen prompts to install R on your computer.
+Go to your downloads folder or wherever you view files where you download from the internet and look for the `R-4.4.1.exe` file tailored for your operating system. Open the executable file to begin the installation process. Follow the on-screen prompts to install R on your computer.
 
 ::: callout-note
 Older versions of R support 32-bit (denoted i386) and 64-bit (denoted x64) operating systems. This is because computers that are 32-bit can only run 32-bit software while 64-bit computers can run both 32-bit and 64-bit software. Since most computers today support 64-bit software, it is highly recommended the 64-bit version of R is used. Therefore as of R version 4.4.0, only the 64-bit version is supported.
@@ -44,9 +52,9 @@ Older versions of R support 32-bit (denoted i386) and 64-bit (denoted x64) opera
 
 After installing R on your computer, you will also need to install [RStudio Desktop](https://posit.co/download/rstudio-desktop/) - an integrated development environment (IDE) to help data scientists be more productive with R [@rstudioteam2020a]. RStudio is a dashboard hosted by [posit](https://posit.co/) that allows ease of access to using R, especially if you are using R for the first time. When you open RStudio, you are also opening the R programming console within.
 
-Go to the [RStudio Desktop webpage](https://posit.co/download/rstudio-desktop/). If you have not installed R yet, you can click **Download and Install R** on the webpage to begin the installation process. Click Download RStudio Desktop appropriate for your operating system. The posit website link should automatically direct you to the appropriate version of RStudio you will need to download and install on your computer. After clicking the download link, the executable file for RStudio will begin to download. After downloading, run the executable file and begin the installation process.
+Go to the [RStudio Desktop webpage](https://posit.co/download/rstudio-desktop/). If you have not installed R yet, you can click **Download and Install R** on the webpage to begin the installation process. Click **Download RStudio Desktop** appropriate for your operating system. The posit website link should automatically direct you to the appropriate version of RStudio you will need to download and install on your computer. After clicking the download link, the executable file for RStudio will begin to download. After downloading, run the executable file and begin the installation process.
 
-![The posit site for downloading RStudio.](rstudio_site.png){fig-align="center"}
+![The [posit](https://posit.co/) site for downloading RStudio.](rstudio_site.png){fig-align="center"}
 
 Once you have both R and RStudio installed, open up the RStudio software. Look for the RStudio icon in your list of programs and click the icon to open it.
 
@@ -114,7 +122,7 @@ The line of code is then immediately placed into the R console in the Console Pa
 Try running all the available R code in this file to become familiar with the R programming language. Copy and paste each R code block within this webpage into an R script, then click **Run** after each command you paste in.
 :::
 
-You can highlight multiple lines of code and run them all at once as well. Optionally, you can run lines of code by using the keyboard shortcut **CTRL + ENTER** (or equivalent). To get started, here is some simple lines of code:
+You can highlight multiple lines of code and run them all at once as well. Optionally, you can run lines of code by using the keyboard shortcut **CTRL + ENTER** (or equivalent). To get started, here are some simple lines of code:
 
 ```{r example1}
 # Assign values
@@ -209,7 +217,7 @@ If the file path displayed by `getwd()` is incorrect, you can change the working
 5.  Verify that you have set your working directory correctly using the `getwd()` function again.
 
 ::: callout-important
-Always start a brand new R session before changing the working directory. The working directory should always be set first before performing any tasks. For example, the `here` package (described next) sets the default file path to the current working directory, and only when the package is first loaded. Changing the working directory afterwards will not change the file path.
+Always start a brand new R session before changing the working directory. The working directory should always be set first before performing any tasks.
 :::
 
 ## Save/Load Data {#sec-saveload-data}
@@ -229,7 +237,7 @@ readRDS(file = "cardata.rds")
 ```
 
 ::: callout-important
-By default, `cardata.rds` file is saved on your computer in the current working directory (see @sec-wd to learn how to change your working directory to save the file in a different location). If you move the `cardata.rds` file to a different location, you should also move its associated files with it too, or else you will have to change your working directory during the R session - something to avoid doing in practice. To avoid complications with problems like this, it is always a good idea to keep only the `cardata.rds` and its associated files in a folder. Moving the folder with all its contents included makes the project self-contained since the `here` package will automatically update the file paths to the new folder location.
+By default, `cardata.rds` file is saved on your computer in the current working directory (see @sec-wd to learn how to change your working directory to save the file in a different location). If you move the `cardata.rds` file to a different location, you should also move its associated files with it too, or else you will have to change your working directory during the R session - something to avoid doing in practice. To avoid complications with problems like this, it is always a good idea to keep only the `cardata.rds` and its associated files in a folder. Or better yet, creating a R project in RStudio will always designate the folder that it was created in as the current working directory. Whenever the R project is opened, the working directory will automatically redirect to that folder's location. See @sec-new-project to learn more about creating R projects within RStudio.
 :::
 
 R can work with a variety of data structures besides the `.rds` format. Common structures include `.csv`, `.txt`, and `.spss`. Excel spreadsheets can also be read in by using the `readxl` package. The easiest way to import a data file for the first time is using the **Important Dataset** feature in the **Environment** Tab in the Environment Pane. All code needed to read in data files for this vignette will be provided but you may have to alter the file path locally for the code to work properly on your computer.
@@ -273,33 +281,59 @@ Here's an example how to source a R script:
 Another advantage of using the `source()` function to read in API Keys is to avoid having to carefully specify the API Key directly in the R script. You can then share the R script with others without having sensitive information contained within.
 :::
 
-Sourcing R files is also useful to cut down on the length of your R script. For example, two user-created functions `new_pas()` and `new_pat()` were developed to assist the user to read in PurpleAir Synoptic (PAS) data files and PurpleAir Time Series (PAT) data files, respectively. Custom functions can be saved to an R script (in this case, `new_pas.R` and `new_pat.R`, respectively). The user can then read in these custom functions without having to specify the entire function within the R script.
+## The .Renviron File
 
-First run these two lines of codes to download the new_pas.R and new_pat.R files:
+It is not ideal to leave sensitive data in a R script. If you share any documents that include your personal information with someone else, that information will become compromised. A better solution is to save sensitive information in a separate location that keeps it private. Then, whenever you need that information, R already has it loaded in the global environment for you to use. You do not need to specify the sensitive information yourself.
 
-```{r download2}
-# Download the new_pas.R file from GitHub
-download.file("https://raw.githubusercontent.com/geomarker-io/purple_air_data_in_R/main/new_pas.R", destfile = "new_pas.R")
+A type of file that handles authentic requests is the `.Renviron` filetype. The `.Renviron` filetype works just like a R script, except this file does not appear in the working directory. When a new R session begins, either by opening RStudio or by restarting the R session manually, R will check the contents of the `.Renviron` file and source from it into the global environment. This means that any variables declared in a `.Renviron` file will be available in the global environment but will be hidden from the Environment Pane and the user's current working directory. This setup is useful for API credentials, since the user is able to hide their API key while being able to use them within an R session as environment variables. Click [here](https://docs.posit.co/how-to-guides/pre-tasks/api-keys-renv/) to learn more about setting up API credentials.
 
-# Download the new_pat.R file from GitHub
-download.file("https://raw.githubusercontent.com/geomarker-io/purple_air_data_in_R/main/new_pat.R", destfile = "new_pat.R")
-```
+Follow these steps to setup a secure method of loading your API Key into your R environment:
 
-To read in the `new_pas()`:
+1.  Open the `.Renviron` file in RStudio by running the following code:
 
-```{r new_pas}
-# Load the new_pas function
-source("new_pas.R")
-```
+    ```{r}
+    #| eval: false
+    # Run this to open .Renviron file
+    usethis::edit_r_environ()
+    ```
 
-Likewise, to read in `new_pat()`:
+    ::: callout-caution
+    You must have the `usethis` package installed in your Users Library to use this function. If you do not have this package installed, type `install.packages('usethis')` before trying this line of code. See @sec-packages-install to learn more about installing R packages and @sec-packages-load to learn more about loading R packages.
+    :::
 
-```{r new_pat}
-# Load the new_pat function
-source("new_pat.R")
-```
+    The `edit_r_environ()` function from the `usethis` package will open a tab named `.Renviron` in the Source Pane (see next image below).
 
-When these two lines are executed, R looks for the files `new_pas.R` and `new_pat.R` and runs all its contents. These two files contain custom functions to read in PAS and PAT files, respectively. These functions should be present in the Environment Pane. You can now use these functions to accomplish tasks. Click on each function to see exactly what these custom functions accomplish.
+2.  Copy and paste the following R code into the `.Renviron` file that just opened. Click on the clipboard icon on the top right of the code block inside the vignette to copy the line of code.
+
+    ```{r API_KEY}
+    #| eval: false
+    API = "a1b2c3d4e5f6g7h8i9"
+    ```
+
+    ![The `.Renviron file` when opened in RStudio. Copy the line of code provided above into this file (Step 2).](Renviro.png){fig-align="center"}
+
+3.  Save the `.Renviron` file and then close the tab.
+
+4.  Restart the R session by clicking **Session** \> **Restart R**. You may be prompted to save any unsaved changes you have made to any R scripts you have opened or the `.Renviron` file.
+
+    ::: callout-caution
+    Remember to reload any R packages that you may need using the `library()` function whenever you restart an R session. If a function within an R package is not found, it is likely because the R package that contains the function is not loaded. See @sec-packages-load to learn how to load packages.
+    :::
+
+5.  When a new R session begins (either by restarting R or by closing and opening RStudio), R will check the contents of the `.Renviron` file and set the variable name `API` as the character string `"a1b2c3d4e5f6g7h8i9"`. Verify that this is the case by running the following code:
+
+    ```{r source_API}
+    # Check that your API 
+    Sys.getenv("API")
+    ```
+
+    The `Sys.getenv()` function pulls the variable `API` that has been assigned `"a1b2c3d4e5f6g7h8i9"` you made in Step 2.
+
+    ::: callout-caution
+    The API Key that you pasted in the `.Renviron` file will still work even if you are outside the R project. Be careful that any variables that you paste inside the `.Renviron` file are not also used in the current R script.
+    :::
+
+This process only needs to be completed once for each API Key that you use. That is, the PurpleAir API Key that you pasted in the `.Renviron` file will be set every time a new R session begins within the R project. If you wish to use a different API Key, repeat Steps 1-5, replacing the old API Key in Step 3 with the new API Key.
 
 # R Projects {#sec-r-projects}
 
@@ -309,21 +343,21 @@ If you are frequently reading in files and saving files to your computer, it is 
 
 First open RStudio on your computer. At the top left, click **File** \> **New Project**. A dialogue box should appear like the one shown below:
 
-![Create a new R project within RStudio.](Rproject1.png){alt="Create a new R project within RStudio." fig-align="center" width="400"}
+![Create a new R project within RStudio.](Rproject1.png){fig-align="center" width="400"}
 
 ::: callout-tip
 If you already have the folder created where all project files will be kept, you can reference this folder by selecting **Existing Directory**. This loads a navigation box where you can select your folder.
 
-![Select a folder that already exists to house the R project.](Rproject4.png){alt="Select a folder that already exists to house the R project." fig-align="center" width="400"}
+![Select a folder that already exists to house the R project.](Rproject4.png){fig-align="center" width="400"}
 :::
 
 Select New Directory from the message box. This brings up a list of various project types. Select **New Project**.
 
-![Click **New Project** to create a new R project.](Rproject2.png){alt="Click New Project to create a new R project." fig-align="center" width="400"}
+![Click New Project to create a new R project.](Rproject2.png){fig-align="center" width="400"}
 
 On the next screen (shown below), enter in the name of the project (e.g. PurpleAir). Beneath the directory name, browse the location on your computer where to host the R project. This will create a subdirectory folder with the name of the project inside. All files created, saved, and loaded while working in this R project will come from this folder.
 
-![Type in the project name and select where to create the folder for the project.](Rproject3.png){alt="Type in the project name and select where to create the folder for the project." fig-align="center" width="400"}
+![Type in the project name and select where to create the folder for the project.](Rproject3.png){fig-align="center" width="400"}
 
 Leave all the other fields untouched. Click **Create Project** to start the new R project. RStudio then restarts the current R session inside of the project folder.
 
@@ -343,26 +377,60 @@ Installing packages is easy and usually requires a one-time installation process
 
 -   [`ggplot2`](https://cran.r-project.org/web/packages/ggplot2/ggplot2.pdf): a system for creating graphics [@ggplot2].
 
--   [`devtools`](https://www.r-project.org/nosvn/pandoc/devtools.html): a package that allows experienced R users to create and deploy R packages of their own [@devtools-2].
+-   [`usethis`](https://cran.r-project.org/web/packages/usethis/index.html): automate package and project setup tasks that are otherwise performed manually [@usethis].
 
--   [`MazamaCoreUtils`](https://cran.r-project.org/web/packages/MazamaCoreUtils/MazamaCoreUtils.pdf): a suite of utility functions for working with AirSensor package [@MazamaCoreUtils].
+-   [`tidyverse`](https://www.tidyverse.org/packages/): loads the most common R packages that are frequently deployed in data analysis [@tidyverse].
 
--   [`AirSensor2`](https://github.com/MazamaScience/AirSensor2): package for processing and displaying data from PurpleAir based on the [AirSensor](https://mazamascience.github.io/AirSensor/) package [@AirSensor-2].
+::: callout-tip
+A banner, like the one shown below, will appear in RStudio if there are packages that are being used that are not installed in the Users Library.
 
-::: callout-caution
-Packages need to only be installed one time. After a package has been installed, there is no reason to install the package again unless there is an updated version for it.
+![The `usethis` package is required but is currently not installed, with the option to install the missing package.](notification.png){fig-align="center"}
+
+Click `Install` to download and install the missing packages.
 :::
 
-To install the `dplyr`, `ggplot2`, `devtools`, and `MazamaCoreUtils` packages, simply use the `install.packages()` function below.
+To install the `dplyr`, `ggplot2`, `devtools`, `usethis` and `tidyverse` packages, simply use the `install.packages()` function below. Here, the names of the packages are specified as a list using the `c()` operator - the `c` standing for **combine**:
 
 ```{r install_packages}
 #| eval: false
 # Install the following packages - only need to run once
-install.packages(c('dplyr', 'ggplot2', 'devtools'))
+install.packages(c('dplyr', 'ggplot2', 'usethis', 'tidyverse'))
 ```
 
+::: callout-warning
+It can take several minutes for all the packages to download and install on your computer. Do not run any code or stop the process by clicking on the stop sign icon in the top right of the Console Pane. Doing so can cause problems with the installation.
+:::
+
 ::: callout-caution
-You may need to restart the R session in order for these packages to successfully install. If this is the case, select **Yes** when prompted to restart the R session. You may have to rerun the R code chunks again after restarting the session.
+You may need to restart the R session in order for these packages to successfully install (especially if the packages are already loaded). If this is the case, select **Yes** when prompted to restart the R session. You may have to rerun the R code chunks again after restarting the session.
+:::
+
+R already comes with its own packages (e.g., data sets, graphics, etc.). You do not need to install these packages, as they are already preinstalled when R is first installed. You can view all the R packages installed on your computer by clicking on the **Packages** tab in RStudio on the Output Pane.
+
+A package only needs to be loaded in once per R session. Reloading a package in the same R session will have no effect. You can check whether a package is successfully loaded by clicking on the **Packages** tab in the Output Pane. You can also load a package by selecting the open box next to the package name, browse package information on CRAN, and delete the package altogether from this list.
+
+![List of Packages installed in the Output Pane. Loaded packages are indicated with a check mark.](packages.png){fig-align="center" width="450"}
+
+Loading and unloading packages can be accomplished here by clicking on the check mark box.
+
+::: callout-caution
+All open packages are unloaded when RStudio is closed or a new R session begins. Unlike the installation process where the packages are installed only once, you must load these packages every time you start a new R session. When you quit your R session and start a fresh session, you must reload the R packages again.
+:::
+
+::: callout-note
+Some R packages depend on items that are handled by other R packages in order to function properly. These extra dependencies will be installed automatically if they are not present in the User Library. For example, installing the `tidyverse` package will also install (and load) the following other packages: `dplyr`, `forcats`, `ggplot2`, `lubridate`, `purrr`, `readr`, `stringr`, `tibble`, and `tidyr`.
+:::
+
+::: callout-caution
+Sometimes, R will print a warning message if a package that is loaded could conflict with another package that is already loaded, like the one shown below:
+
+![A conflict in function names between the `dplyr` and `stats` packages.](conflict.png){fig-align="center"}
+
+This scenario appears if functions that share the same name but perform different actions from two or more packages. Functions from the latter package will mask functions that are included in packages loaded earlier by default. For example, the `filter()` function appears in both the `dplyr` package and the `stats` package. The `stats` package is loaded automatically when a new R session begins. When the `dplyr` package (a package that the `tidyverse` package depends on, or a dependency) is loaded into the session, this conflicts informs you that the `fitler()` function refers to the function in the `dplyr` package, not the `stats` package.
+:::
+
+::: callout-tip
+You can refer to functions included with an R package without having to load the package itself. Use the `::` operator to refer to the package and the function with which you wish to use. From the previous caution box, `dplyr::filter()` refers to the `filter()` function in the `dplyr` package. This is handy if you require a specific function from a R package, but make sure you have the package installed first!
 :::
 
 ::: callout-note
@@ -373,45 +441,15 @@ Some packages may need to be loaded from binary sources and compiled before inst
 Select **No** to ensure the packages downloaded and installed properly.
 :::
 
-Some R package depend on other R packages (called **dependencies**). Packages that depend on other packages will install these extra packages automatically if they are not already installed in the users library. As an example, the AirSensor2 package requires the `MazamaCoreUtils` package to be already installed:
-
-```{r MazamaCoreUtils}
-#| eval: false
-# Install the 'MazamaCoreUtils' package - only need to run once
-install.packages('MazamaCoreUtils')
-```
-
-::: callout-caution
-Some R packages that depend on other R packages in order to function properly. These extra dependencies are usually installed automatically if they are not present in the users library.
-:::
-
-You can view all the R packages installed on your computer by clicking on the **Packages** tab in RStudio on the Output Pane.
-
-::: callout-tip
-R already comes with its own packages (e.g., data sets, graphics, etc.). You do not need to install these packages, as they are already pre-installed when R is first installed.
-:::
-
 Periodically, authors of R packages will update their package to fix bugs, add more functions and data sets, and to be better compatible with the latest R software and other packages. You can use the `install.packages()` function to update (actually re-install) the package to the latest version. By default, the latest version of the package available on CRAN will be installed.
 
-Unlike the other R packages above, the `AirSensor2` package is not publicly available on [CRAN](https://cran.r-project.org/) (as of this writing). However, the files needed to install the package can be downloaded from [GitHub](https://github.com/MazamaScience/AirSensor2). To do this, we use the `install_github()` function from the `devtools` package to point to the GitHub page:
-
-```{r install_AirSensor2}
-#| eval: false
-# Install the 'AirSensor2' package - only need to run once
-devtools::install_github('mazamascience/AirSensor2')
-```
-
-When the above line is executed, a list of dependencies the `AirSensor2` package needs will be listed, and you will be asked to updated some or all of the packages. At the prompt, type `1` and press **ENTER** to update all the dependencies automatically.
-
-![When prompted with a list of packages to update, type `1` and press **ENTER**.](AirSensor2.png){alt="When prompted with a list of packages to update, type 1 and press ENTER." fig-align="center" width="450"}
-
-::: callout-warning
-It can take several minutes for all the packages to download and install on your computer. Do not run any code or stop the process by clicking on the stop sign icon in the top right of the Console Pane. Doing so can cause problems with the installation.
+::: callout-important
+Packages need to only be installed one time. After a package has been installed, there is no reason to install the package again unless there is an updated version for it.
 :::
 
 ## Loading R Packages {#sec-packages-load}
 
-Once R packages have been installed, you must then load the R package in the R environment. Loading in R packages allows the user to gain access to data, functions, and help documentation that comes along with the R package. To load an R package, use the function `library()` along with the package name, just as we did with the `here` package in @sec-saveload :
+Once R packages have been installed, you must then load the R package in the R environment. Loading in R packages allows the user to gain access to data, functions, and help documentation that comes along with the R package. To load an R package, use the function `library()` along with the package name:
 
 ```{r load_packages}
 #| message: false
@@ -419,12 +457,9 @@ Once R packages have been installed, you must then load the R package in the R e
 # Load required R packages
 library(dplyr)
 library(ggplot2)
-library(AirSensor)
+library(usethis)
+library(tidyverse)
 ```
-
-::: callout-tip
-As shown in this example with the `here` package, a package only needs to be loaded in once per R session. Reloading a package will have no effect.
-:::
 
 You can check whether a package is successfully loaded by clicking on the **Packages** tab in the Output Pane. Loaded packages are indicated with a check mark. You can also load a package by selecting the open box next to the package name, browse package information on CRAN, and delete the package altogether from this list. Loaded packages can be unloaded by clicking on the check mark. Typically, however, packages are never unloaded, as functions that are part of a package will then become unavailable once the package is unloaded. All open packages are unloaded when R or RStudio is closed or a new R session begins.
 
@@ -440,8 +475,12 @@ Sometimes, R will print a warning message if a package that is loaded could conf
 
 In the above example, the `dplyr` package has functions filter and lag that also appear in the `stats` package (automatically loaded when R opens). When the `dplyr` package is loaded, the `filter` and `lag` functions from the stats package are masked with the same-named functions in the dplyr package.
 
+To use a masked function from an earlier package, you must either unload the latter package or reference specifically the package. Indeed, the `::` operator allows you to reference a function from a specific package without having to load that package first. This is handy if you will only use a package just to reference a function or data set sparingly.
+
 ::: callout-tip
 You can specify precisely which function to use with the `::` operator with the format `package::function`. For example `stats::filter` references the `filter()` function from the `stats` package and `dplyr::filter` references the `filter()` function from the `dplyr` package. Note that the packages do not have to be loaded for this to work.
 :::
 
-To use a masked function from an earlier package, you must either unload the latter package or reference specifically the package. For example, the line `devtools::install_github("MazamaScience/AirSensor2")` above runs the `install_github()` function from the `devtools` package without having to load the package (i.e. before the `library(devtools)` line). Indeed, the `::` operator allows you to reference a function from a specific package without having to load that package first. This is handy if you will only use a package just to reference a function or data set sparingly.
+# Feedback {#sec-thanks}
+
+If you have any comments or suggestions on ways that this tutorial can be improved, I'd love to hear from you! Please email me your feedback at [stephen.colegate\@cchmc.org](stephen.colegate@cchmc.org).
