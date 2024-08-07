@@ -3100,11 +3100,13 @@ vertical-align: -.125em;
   <li><a href="#sec-intro" id="toc-sec-intro" class="nav-link active" data-scroll-target="#sec-intro"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#sec-installR" id="toc-sec-installR" class="nav-link" data-scroll-target="#sec-installR"><span class="header-section-number">2</span> Installing R and RStudio</a>
   <ul class="collapse">
-  <li><a href="#installing-r" id="toc-installing-r" class="nav-link" data-scroll-target="#installing-r"><span class="header-section-number">2.1</span> Installing R</a></li>
+  <li><a href="#sec-rinstall" id="toc-sec-rinstall" class="nav-link" data-scroll-target="#sec-rinstall"><span class="header-section-number">2.1</span> Installing R</a></li>
+  <li><a href="#sec-rstudioinstall" id="toc-sec-rstudioinstall" class="nav-link" data-scroll-target="#sec-rstudioinstall"><span class="header-section-number">2.2</span> Installing RStudio</a></li>
   </ul></li>
   <li><a href="#sec-openR" id="toc-sec-openR" class="nav-link" data-scroll-target="#sec-openR"><span class="header-section-number">3</span> Opening and Using R</a>
   <ul class="collapse">
   <li><a href="#sec-rscripts" id="toc-sec-rscripts" class="nav-link" data-scroll-target="#sec-rscripts"><span class="header-section-number">3.1</span> R Scripts</a></li>
+  <li><a href="#sec-rcode" id="toc-sec-rcode" class="nav-link" data-scroll-target="#sec-rcode"><span class="header-section-number">3.2</span> Running R Code</a></li>
   </ul></li>
   <li><a href="#sec-saveload" id="toc-sec-saveload" class="nav-link" data-scroll-target="#sec-saveload"><span class="header-section-number">4</span> Saving/Loading</a>
   <ul class="collapse">
@@ -3181,8 +3183,8 @@ Warning
 <p>You must install the R programming language first and the RStudio program second. While it is possible to use R without having to install or use RStudio, you must have R installed on your computer before you can install and use RStudio.</p>
 </div>
 </div>
-<section id="installing-r" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">2.1</span> Installing R</h2>
+<section id="sec-rinstall" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-rinstall"><span class="header-section-number">2.1</span> Installing R</h2>
 <p>The latest version of R available as of the time of this writing is R-4.4.1. You can install R on your computer by going to <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a> and selecting the R version that is appropriate for your operating system.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -3218,6 +3220,9 @@ Note
 <p>Older versions of R support 32-bit (denoted i386) and 64-bit (denoted x64) operating systems. This is because computers that are 32-bit can only run 32-bit software while 64-bit computers can run both 32-bit and 64-bit software. Since most computers today support 64-bit software, it is highly recommended the 64-bit version of R is used. Therefore as of R version 4.4.0, only the 64-bit version is supported.</p>
 </div>
 </div>
+</section>
+<section id="sec-rstudioinstall" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="sec-rstudioinstall"><span class="header-section-number">2.2</span> Installing RStudio</h2>
 <p>After installing R on your computer, you will also need to install <a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop</a> - an integrated development environment (IDE) to help data scientists be more productive with R <span class="citation" data-cites="rstudioteam2020a">(<a href="#ref-rstudioteam2020a" role="doc-biblioref">RStudio Team 2020</a>)</span>. RStudio is a dashboard hosted by <a href="https://posit.co/">posit</a> that allows ease of access to using R, especially if you are using R for the first time. When you open RStudio, you are also opening the R programming console within.</p>
 <p>Go to the <a href="https://posit.co/download/rstudio-desktop/">RStudio Desktop webpage</a>. If you have not installed R yet, you can click <strong>Download and Install R</strong> on the webpage to begin the installation process. Click <strong>Download RStudio Desktop</strong> appropriate for your operating system. The posit website link should automatically direct you to the appropriate version of RStudio you will need to download and install on your computer. After clicking the download link, the executable file for RStudio will begin to download. After downloading, run the executable file and begin the installation process.</p>
 <div class="quarto-figure quarto-figure-center">
@@ -3308,6 +3313,9 @@ Tip
 <li>Navigate to the file location where you want to open the <code>.R</code> file.</li>
 <li>Click <strong>Open</strong>.</li>
 </ol>
+</section>
+<section id="sec-rcode" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="sec-rcode"><span class="header-section-number">3.2</span> Running R Code</h2>
 <p>R code is executed one line at a time. To run a line, place your cursor on the line you wish to run in the Source Pane and click on <strong>Run</strong>. The line of code is then sent to the Console Pane and is executed. <a href="https://colegasn.github.io/Rintro/">This rendered HTML page</a> of all the code and relevant output is hosted online on our <a href="https://github.com/colegasn/Rintro">GitHub page</a>. All the R code that is available on this webpage can be copied and pasted into your R session. For each R code block, hover your mouse over the top-right corner and click <strong>Copy to Clipboard</strong> and then paste all the code from the code block into your R script. For example, try running the following code block below:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://raw.githubusercontent.com/geomarker-io/purple_air_data_in_R/main/purpleair.R&quot;</span>,</span>

@@ -30,7 +30,7 @@ R is a programming language that primarily functions as a command prompt. R oper
 You must install the R programming language first and the RStudio program second. While it is possible to use R without having to install or use RStudio, you must have R installed on your computer before you can install and use RStudio.
 :::
 
-## Installing R
+## Installing R {#sec-rinstall}
 
 The latest version of R available as of the time of this writing is R-4.4.1. You can install R on your computer by going to <https://cran.r-project.org/> and selecting the R version that is appropriate for your operating system.
 
@@ -49,6 +49,8 @@ Go to your downloads folder or wherever you view files where you download from t
 ::: callout-note
 Older versions of R support 32-bit (denoted i386) and 64-bit (denoted x64) operating systems. This is because computers that are 32-bit can only run 32-bit software while 64-bit computers can run both 32-bit and 64-bit software. Since most computers today support 64-bit software, it is highly recommended the 64-bit version of R is used. Therefore as of R version 4.4.0, only the 64-bit version is supported.
 :::
+
+## Installing RStudio {#sec-rstudioinstall}
 
 After installing R on your computer, you will also need to install [RStudio Desktop](https://posit.co/download/rstudio-desktop/) - an integrated development environment (IDE) to help data scientists be more productive with R [@rstudioteam2020a]. RStudio is a dashboard hosted by [posit](https://posit.co/) that allows ease of access to using R, especially if you are using R for the first time. When you open RStudio, you are also opening the R programming console within.
 
@@ -102,6 +104,8 @@ By default, RStudio should open a `.R` file if you click on it. If your computer
 2.  Click on **File** \> **Open File**. A navigation window should appear.
 3.  Navigate to the file location where you want to open the `.R` file.
 4.  Click **Open**.
+
+## Running R Code {#sec-rcode}
 
 R code is executed one line at a time. To run a line, place your cursor on the line you wish to run in the Source Pane and click on **Run**. The line of code is then sent to the Console Pane and is executed. [This rendered HTML page](https://colegasn.github.io/Rintro/) of all the code and relevant output is hosted online on our [GitHub page](https://github.com/colegasn/Rintro). All the R code that is available on this webpage can be copied and pasted into your R session. For each R code block, hover your mouse over the top-right corner and click **Copy to Clipboard** and then paste all the code from the code block into your R script. For example, try running the following code block below:
 
